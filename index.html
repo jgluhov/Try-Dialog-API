@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dialog API</title>
+
+    <style>
+        body {
+            position: relative;
+            display: block;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        #dialog[open] {
+            animation: show 1s ease normal;
+        }
+        .dialog[open]::backdrop {
+            -webkit-animation: show-backdrop 0.5s ease 0.2s normal;
+        }
+        #dialog::backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, .5);
+            -webkit-animation: none;
+        }
+
+        @-webkit-keyframes show{
+            from {
+                transform: translateY(-150%);
+            }
+            to {
+                transform: translateY(0%);
+            }
+        }
+
+        #dialog.hide {
+            animation: hide 1s ease-out normal;
+        }
+        #dialog.hide::backdrop {
+            -webkit-animation: hide-backdrop 0.5s ease 0.2s normal;
+        }
+        @-webkit-keyframes hide{
+            to {
+                transform: translateY(-150%);
+            }
+        }
+
+        @-webkit-keyframes show-backdrop {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @-webkit-keyframes hide-backdrop{
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button type="button" class="btn" id="openDialogBtn">Open</button>
+
+    <dialog id="dialog">
+        <div class="dialog-header">
+            This is new Dialog API
+        </div>
+        <div class="dialog-content">
+            <form>
+                <label for="dialogInput">Enter text:</label>
+                <input type="text" id="dialogInput"/>
+            </form>
+        </div>
+        <div class="dialog-footer">
+            <button id="dialogCancelBtn">Cancel</button>
+            <button id="dialogConfirmBtn">Confirm</button>
+        </div>
+    </dialog>
+
+    <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
